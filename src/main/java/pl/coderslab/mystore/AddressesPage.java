@@ -8,14 +8,12 @@ import org.openqa.selenium.support.PageFactory;
 public class AddressesPage {
 
     private WebDriver driver;
-    @FindBy(xpath = "//*[@id=\"content\"]/div[4]/a/span")
+    @FindBy(partialLinkText = "Create")
     WebElement createNewAddressButton;
-    @FindBy(xpath = "//*[@id=\"address-8926\"]/div[1]/h4")
-    WebElement aliasText;
-    @FindBy(xpath = "//*[@id=\"address-8926\"]/div[1]/address")
+    @FindBy(xpath = "/html/body/main/section/div/div/section/section/div[@class=\"col-lg-4 col-md-6 col-sm-6\"][last()]")
     WebElement wholeAddressText;
-    @FindBy(xpath = "//*[@id=\"address-8938\"]/div[2]/a[2]/span")
-    WebElement additionalAddressDeleteButton;
+    @FindBy(xpath = "/html/body/main/section/div/div/section/section/div[@class=\"col-lg-4 col-md-6 col-sm-6\"][last()]/article/div[2]/a[2]/span")
+    WebElement lastAddedAddressDeleteButton;
     @FindBy(xpath = "//*[@id=\"notifications\"]/div/article/ul/li")
     WebElement successfullyDeletingAlert;
 
@@ -28,15 +26,12 @@ public class AddressesPage {
         createNewAddressButton.click();
     }
 
-    public String getAliasText(){
-        return aliasText.getText();
-    }
     public String getWholeAddressText(){
         return wholeAddressText.getText();
     }
 
     public void deleteAddress(){
-        additionalAddressDeleteButton.click();
+        lastAddedAddressDeleteButton.click();
     }
 
     public String getSuccessfullyDeletingAlert(){

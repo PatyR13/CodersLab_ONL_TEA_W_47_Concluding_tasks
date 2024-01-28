@@ -47,8 +47,7 @@ public class AddressInMyStoreSteps {
     @Then("new address added with correct {word} {string} {word} {word} {string} {word}")
     public void addressValidation(String alias, String address, String city, String zipCode, String country, String phone){
         AddressesPage addressesPage = new AddressesPage(this.driver);
-        assertEquals(alias, addressesPage.getAliasText());
-        assertEquals(USER_FULL_NAME + "\n" + address + "\n" + city + "\n" + zipCode + "\n" + country + "\n" + phone, addressesPage.getWholeAddressText());
+        assertEquals(alias + "\n" + USER_FULL_NAME + "\n" + address + "\n" + city + "\n" + zipCode + "\n" + country + "\n" + phone + "\n" + "\uE254 Update \uE872 Delete", addressesPage.getWholeAddressText());
     }
 
     @And("quit browser")
