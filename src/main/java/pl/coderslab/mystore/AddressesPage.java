@@ -21,7 +21,7 @@ public class AddressesPage {
 
     public AddressesPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public void goToNewAddressPage(){

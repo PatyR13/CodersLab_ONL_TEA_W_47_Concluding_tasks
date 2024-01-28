@@ -25,7 +25,7 @@ public class NewAddressPage {
 
     public NewAddressPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public void completeAndSubmitNewAddressForm(String alias, String address, String city, String zipCode, String phone){

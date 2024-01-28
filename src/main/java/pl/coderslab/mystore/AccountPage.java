@@ -11,7 +11,7 @@ public class AccountPage {
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     @FindBy(xpath = "//*[@id=\"footer_account_list\"]/li[4]/a")
