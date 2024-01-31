@@ -16,8 +16,20 @@ public class AccountPage {
 
     @FindBy(xpath = "//*[@id=\"footer_account_list\"]/li[4]/a")
     WebElement footerAddressLabel;
+    @FindBy(xpath = "//*[@id=\"category-3\"]/a")
+    WebElement clothesCategoryButton;
+    @FindBy(id = "history-link")
+    WebElement orderHistoryLabel;
 
     public void goToAddressPage(){
         footerAddressLabel.click();
+    }
+
+    public void goToPageWithClothes(){
+        clothesCategoryButton.click();
+    }
+
+    public void goToOrderHistoryPage(){
+        orderHistoryLabel.click();
     }
 }

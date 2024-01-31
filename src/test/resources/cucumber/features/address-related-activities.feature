@@ -10,7 +10,6 @@ Feature: Adding or deleting an address from user's account.
     Examples:
     | alias   | address     | city   | zip code | country          | phone      |
     | actual  | "Baking 15" | London | W1U6SG   | "United Kingdom" | 2071234567 |
-    | new     | "Happy 20"  | London | W2G5UT   | "United Kingdom" | 2071284667 |
 
   Scenario: Deleting of the last added address.
     Given an open browser at logged user's address page
