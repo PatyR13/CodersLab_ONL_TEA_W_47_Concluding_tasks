@@ -3,7 +3,6 @@ package pl.coderslab.mystore;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -46,12 +45,12 @@ public class SweaterDetailsPage {
         return currentPrice / (1 - (discountPercentage/100));
     }
 
-    public boolean correctDiscount(){
+    public boolean isDiscountCorrect(){
         double currentPriceNum = Double.parseDouble(currentPrice.getAttribute("content"));
         double regularPriceNum = countTheRegularPrice(currentPriceNum, 20);
         BigDecimal a = new BigDecimal(regularPriceNum);
-        BigDecimal roundOff = a.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-        return Objects.equals(regularPrice.getText(), "€" + roundOff);
+        BigDecimal regularPriceRoundOff = a.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+        return Objects.equals(regularPrice.getText(), "€" + regularPriceRoundOff);
     }
 
 
