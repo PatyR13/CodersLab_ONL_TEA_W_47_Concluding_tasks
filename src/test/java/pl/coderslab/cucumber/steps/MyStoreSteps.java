@@ -110,7 +110,7 @@ public class MyStoreSteps {
     }
 
     @When("the user buys {int} piece(s) of sweater with size {word}")
-    public void buyingASweater(int quantity, String size) {
+    public void buyingASweater(int quantity, String size) throws InterruptedException {
         clothesPage = new ClothesPage(this.driver);
         clothesPage.goToClotheDetails();
         sweaterDetailsPage = new SweaterDetailsPage(this.driver);
@@ -123,10 +123,15 @@ public class MyStoreSteps {
         orderDetailsPage.placingTheOrder();
     }
 
-    @Then("the order is placed")
-    public void orderConfirmation(){
+    @Then("the order is placed with correct quantity {int} and size {word}")
+    public void orderConfirmation(int quantity, String size){
         orderConfirmationPage = new OrderConfirmationPage(this.driver);
         assertEquals("\uE876YOUR ORDER IS CONFIRMED", orderConfirmationPage.getOrderConfirmationAlert());
+        assertEquals(quantity, Integer.parseInt(orderConfirmationPage.getOrderedQuantity()));
+        assertEquals("Hummingbird printed sweater (Size: " + size + ")", orderConfirmationPage.getOrderedProductWithSize());
+        assertEquals("Pick up in-store", orderConfirmationPage.getShippingMethod());
+        assertEquals("Payment method: Payments by check", orderConfirmationPage.getPaymentMethod());
+
     }
 
     @And("the screenshot is taken")
@@ -138,10 +143,12 @@ public class MyStoreSteps {
     @And("the order status is Awaiting check payment and the amount is the same as in the confirmation")
     public void confirmationOfOrderStatusAndAmount(){
         String orderAmount = orderConfirmationPage.getTotalOrderAmount();
+        String orderReference = orderConfirmationPage.getOrderReference();
         orderConfirmationPage.goToAccountPage();
         accountPage.goToOrderHistoryPage();
         orderHistoryPage = new OrderHistoryPage(this.driver);
-        assertEquals(orderAmount, orderHistoryPage.getLastOrderTotalPrice());
-        assertEquals("Awaiting check payment", orderHistoryPage.getLastOrderStatus());
+        assertEquals(orderReference, "Order reference: " + orderHistoryPage.getLatestOrderReference());
+        assertEquals(orderAmount, orderHistoryPage.getLatestOrderTotalPrice());
+        assertEquals("Awaiting check payment", orderHistoryPage.getLatestOrderStatus());
     }
 }

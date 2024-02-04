@@ -14,14 +14,19 @@ public class OrderHistoryPage {
     }
 
     @FindBy(xpath = "//*[@id=\"content\"]/table/tbody/tr[1]/td[2]")
-    WebElement lastOrderTotalPrice;
+    WebElement latestOrderTotalPrice;
     @FindBy(xpath = "//*[@id=\"content\"]/table/tbody/tr[1]/td[4]/span")
-    WebElement lastOrderStatus;
+    WebElement latestOrderStatus;
+    @FindBy(xpath = "//*[@id=\"content\"]/table/tbody/tr[1]/th")
+    WebElement latestOrderReference;
 
-    public String getLastOrderTotalPrice(){
-        return lastOrderTotalPrice.getText();
+    public String getLatestOrderTotalPrice(){
+        return latestOrderTotalPrice.getText();
     }
-    public String getLastOrderStatus(){
-        return lastOrderStatus.getText();
+    public String getLatestOrderStatus(){
+        return latestOrderStatus.getText();
+    }
+    public String getLatestOrderReference(){
+        return latestOrderReference.getText();
     }
 }

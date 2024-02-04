@@ -29,11 +29,18 @@ public class SweaterDetailsPage {
     WebElement currentPrice;
     @FindBy(xpath = "//*[@id=\"main\"]/div[1]/div[2]/div[1]/div[1]/span")
     WebElement regularPrice;
+    @FindBy(xpath = "//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div/div[1]/div/span[3]/button[1]")
+    WebElement quantityUpButton;
 
-    public void addingToCartSelectedProduct(int quantity, String size){
+    public void addingToCartSelectedProduct(int quantity, String size) throws InterruptedException {
         sizeSelectionBox.sendKeys(size);
-        quantityBox.click();
-        quantityBox.sendKeys(Keys.BACK_SPACE, Integer.toString(quantity));
+     // quantityBox.click();
+     // quantityBox.sendKeys(Keys.BACK_SPACE, Integer.toString(quantity));
+        Thread.sleep(2000);
+        for (int i = 0; i < (quantity - 1); i++){
+            quantityUpButton.click();
+            Thread.sleep(2000);
+        }
         addToCartButton.click();
     }
 
